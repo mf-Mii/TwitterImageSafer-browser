@@ -47,7 +47,7 @@ const blockUsersMediaOnProfile = () => {
   $("body").find('[data-testid="sidebarColumn"]').each(function() {
     $(this).find('> div > div:nth-child(2) > div > div[tabindex="0"] > div > div:nth-child(3) [data-testid="tweetPhoto"]').each(function() {
       const mediaBox = $(this).parents('div[tabindex="0"]').first().find('> div > div:nth-child(3)');
-      console.log(mediaBox);
+      //console.log(mediaBox);
       if (!mediaBox.find('[data-testid="tweetPhoto"]').length) return;
       const twMediaLink = mediaBox.find('[data-testid="tweetPhoto"]').first().parents('a[role="link"]').attr("href");
       const tweetId = twMediaLink.substring(1).split('/')[2];
@@ -89,7 +89,7 @@ const blockUserProfiles = () => {
     if ($(this).attr("data-testid") && $(this).attr("data-testid").endsWith('-follow')) {
       const twUid = $(this).attr('aria-label').split('@')[1];
       if (TIS.API.isGBanUser(twUid)) {
-        console.log(`The TwitterUser ${twUid} is G-Banned.`)
+        //console.log(`The TwitterUser ${twUid} is G-Banned.`)
         $(this).after('<button class="TIS-DisabledFollow-btn">フォローはできません</button>');
         $(this).remove();
       }else {
@@ -116,7 +116,7 @@ const blockUserProfiles = () => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Twitter Image Safer APIs
 let blacklistCache = {
-  user: ['xxxxxsaki_', 'xxxxxsaki__', 'Rara_holo_pad_', 'green_apple_xx_', 'Q0S_Rimu__', 'rin707523_', 'sirayuri_1_', 'ichigo_pappar__', 'marimain91_', 'madiilso_', 'sarukiti_se_', 'KotoriMforever_', '052ysk_'],
+  user: ['xxxxxsaki_', 'xxxxxsaki__', 'Rara_holo_pad_', 'green_apple_xx_', 'Q0S_Rimu__', 'rin707523_', 'sirayuri_1_', 'ichigo_pappar__', 'marimain91_', 'madiilso_', 'sarukiti_se_', 'KotoriMforever_', '052ysk_', 'KPP_souni_','asno_ee_'],
   myReport: {
     user: [],
     tweet: [],
@@ -275,7 +275,7 @@ const TIS = {
         //console.log('This user is bypassed.')
         return;
       }
-      console.log('BlockMedias called.')
+      //console.log('BlockMedias called.')
       const blockID = TIS.Twitter._InsertElementVariables.deletedElements.length;
       let blockedMessage = TIS.Twitter._InsertElementVariables.COMMON_HTML
         .replace('%MESSAGE%', TIS.Twitter._InsertElementVariables[reason]['media'])
@@ -284,7 +284,7 @@ const TIS = {
       const delElem = elem.children('div').first();
       const insertedBlockMessage = elem.find('div.TIS-Box').last();
       $(`button#TIS_BLOCKED_RESTORE_BUTTON_${TIS.Twitter._InsertElementVariables.deletedElements.length}`).on('click', function() {
-        console.log(`TIS_BLOCKED_RESTORE_BUTTON_${blockID} clicked.`)
+        //console.log(`TIS_BLOCKED_RESTORE_BUTTON_${blockID} clicked.`)
         const restoreElem = TIS.Twitter._InsertElementVariables.deletedElements[blockID];
         //console.log({insertedBlockMessage, restoreElem});
         insertedBlockMessage.before(restoreElem);
